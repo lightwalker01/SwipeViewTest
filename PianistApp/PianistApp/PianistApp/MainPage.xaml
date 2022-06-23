@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PianistApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="page">
+
+    <CollectionView
+        Margin="20"
+        BackgroundColor="Transparent"
+        ItemSizingStrategy="MeasureAllItems"
+        ItemsSource="{Binding Path=Items, Mode=OneWay, Source={x:Reference page}}"
+        SelectionMode="None"
+        VerticalScrollBarVisibility="Always">
+        <CollectionView.EmptyView>
+            <ContentView>
+                <Label
+                    Margin="0,0,0,20"
+                    FontAttributes="Italic"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="[No Items to display]"
+                    VerticalOptions="Center" />
+            </ContentView>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+
+                <SwipeView BackgroundColor="Transparent">
+                    <SwipeView.LeftItems>
+                        <SwipeItem
+                            Command="{Binding Source={x:Reference page}, Path=TestCommand}"
+                            CommandParameter="{Binding .}"
+                            BackgroundColor="Red"
+                            IsDestructive="True"
+                            Text="[Remove Incident]" />
+                    </SwipeView.LeftItems>
+                    <Frame
+                        Margin="0,0,0,10"
+                        Padding="10"
+                        BackgroundColor="#434343"
+                        HasShadow="True"
+                        IsClippedToBounds="True">
+
+
+                        <Label Text="{Binding .}" />
+                    </Frame>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
